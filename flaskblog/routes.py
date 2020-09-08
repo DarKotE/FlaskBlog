@@ -1,24 +1,7 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-
-app = Flask(__name__)
-
-app.config['SECRET_KEY'] = 'f8f2c0e45ad404974a58358262628821'
-
-posts = [
-    {
-        'author':'EugeneB',
-        'title':'Blog Post 1',
-        'content': 'First post content',
-        'date_posted':'September 5, 2020',
-    },
-    {
-        'author':'Alex2',
-        'title':'Blog Post 2',
-        'content': 'Second post content',
-        'date_posted':'September 6, 2020',
-    }
-]
+from flask import render_template, url_for, flash, redirect
+from flaskblog import app
+from flaskblog.forms import RegistrationForm, LoginForm
+from flaskblog.models import User, Post
 
 @app.route("/")
 @app.route("/home")
@@ -48,7 +31,3 @@ def login():
         
     return render_template('login.html', title='Login', form=form)
 
-
-
-if __name__ =='__main__':
-    app.run(debug=True)
